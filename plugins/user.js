@@ -243,8 +243,8 @@ async function signUp(token, body, query, params, ctx) {
       subject: '[Sunnytest] Verify your email address',
       html: `<strong>Hello! You're almost ready to start enjoying Sunnytest.
             Simply click this link below to verify your email address.</strong><p>
-            <link href="http://localhost:3000/verifyEmail?code=${verifyCode}">
-            http://localhost:3000/verifyEmail?code=${verifyCode}</link></p>`,
+            <link href="${config.webUrl}/verifyEmail?code=${verifyCode}">
+            ${config.webUrl}/verifyEmail?code=${verifyCode}</link></p>`,
     };
 
     sgMail.send(msg)
@@ -412,8 +412,8 @@ async function sendmail(token, body, query, params, ctx) {
       subject: '[Sunnytest] Verify your email address',
       html: `<strong>Hello! You're almost ready to start enjoying Sunnytest.
             Simply click this link below to verify your email address.</strong><p>
-            <link href="http://localhost:3000/verifyEmail?code=${verifyCode}">
-            http://localhost:3000/verifyEmail?code=${verifyCode}</link></p>`,
+            <link href="${config.webUrl}/verifyEmail?code=${verifyCode}">
+            ${config.webUrl}/verifyEmail?code=${verifyCode}</link></p>`,
     };
 
     sgMail.send(msg)

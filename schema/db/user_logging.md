@@ -1,5 +1,5 @@
 ## Name
-    會員統計資料(statistics)
+    會員統計資料(user_logging)
 
 ## Description
     * 會員統計數據資料表

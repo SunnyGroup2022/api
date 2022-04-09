@@ -39,3 +39,18 @@
  Name | Field | Remarks
  --------------- | --------------- | ---------------
  id | id |
+
+## 初始設定
+ CREATE OR REPLACE FUNCTION set_created_on()
+    RETURNS trigger AS
+ $$
+ BEGIN
+   NEW.created_on = NOW();
+    RETURN NEW;
+ END;
+ $$ LANGUAGE plpgsql;
+
+ CREATE TRIGGER user_connection_created_on
+ BEFORE INSERT ON public."user_connection"
+ FOR EACH ROW
+ EXECUTE PROCEDURE set_user_created_on();
