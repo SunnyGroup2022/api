@@ -28,5 +28,5 @@ module.exports = {
     origin: '*',
     credentials: true,
   },
-  webUrl: 'https://master.d2w5ix9s0dasc.amplifyapp.com',
+  webUrl: 'https://app.sunnyh2022.com',
 };
