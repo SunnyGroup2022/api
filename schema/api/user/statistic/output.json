@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "GET user/statistic User.statistic output data",
+  "properties": {
+    "userCount": {
+      "type": "integer",
+      "description": "註冊會員總數"
+    },
+    "activeUserCount": {
+      "type": "integer",
+      "description": "本日活躍會員總數"
+    },
+    "weekActiveUserAvg": {
+      "type": "integer",
+      "description": "過去七天活躍會員平均數"
+    }
+  },
+  "additionalProperties": false
+}

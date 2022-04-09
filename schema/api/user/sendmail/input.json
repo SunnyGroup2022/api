@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "POST user/sendmail User.sendmail input data",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "description": "類型（1: 驗證會員電子信箱）"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "type"
+  ]
+}

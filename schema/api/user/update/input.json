@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "PUT user/update User.update input data",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "會員姓名"
+    },
+    "oldPassword": {
+      "type": "string",
+      "description": "會員舊密碼"
+    },
+    "password": {
+      "type": "string",
+      "description": "會員新設定的密碼",
+      "pattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20}$"
+    },
+    "password2": {
+      "type": "string",
+      "description": "會員新密碼確認",
+      "pattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20}$"
+    }
+  },
+  "additionalProperties": false
+}

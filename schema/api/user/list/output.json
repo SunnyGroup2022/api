@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "get user/:id User.find output data",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "搜尋結果的總數"
+    },
+    "data": {
+    	"type": "array",
+    	"description": "會員資料列表",
+    	"items": {
+    		"type": "object",
+    		"description": "會員資料",
+    		"properties": {
+          "id": {
+            "type": "integer",
+            "description": "會員編號"
+          },
+          "name": {
+            "type": "string",
+            "description": "會員姓名"
+          },
+          "created_on": {
+            "type": "object",
+            "description": "會員註冊時間"
+          },
+          "logins": {
+            "type": "integer",
+            "description": "會員登入次數"
+          },
+          "last_online": {
+            "type": ["object", "null"],
+            "description": "會員最後活動時間"
+          }
+        },
+        "additionalProperties": false
+    	}
+    }
+  },
+  "additionalProperties": false
+}

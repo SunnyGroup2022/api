@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "get user/:id User.find output data",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "會員編號"
+    },
+    "name": {
+      "type": "string",
+      "description": "會員姓名"
+    },
+    "email": {
+      "type": "string",
+      "description": "會員電子郵件"
+    },
+    "email_verified": {
+      "type": "integer",
+      "description": "會員電子郵件驗證狀態（0: 未驗證, 1: 已驗證）"
+    },
+    "created_on": {
+      "type": "object",
+      "description": "會員註冊時間"
+    },
+    "last_login": {
+      "type": "object",
+      "description": "會員最後登入時間"
+    },
+    "last_online": {
+      "type": "object",
+      "description": "會員最後活動時間"
+    },
+    "logins": {
+      "type": "integer",
+      "description": "會員登入次數"
+    }
+  },
+  "additionalProperties": false
+}

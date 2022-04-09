@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "PUT user/update User.update output data",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "description": "修改狀態（1: 登入成功）"
+    }
+  },
+  "additionalProperties": false
+}

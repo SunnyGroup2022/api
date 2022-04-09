@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "POST user/signUp User.signUp output data",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "description": "發送狀態（0: 發送未成功, 1: 發送成功）"
+    }
+  },
+  "additionalProperties": false
+}

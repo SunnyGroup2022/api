@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "POST user/login User.login input data",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "會員電子郵件"
+    },
+    "password": {
+      "type": "string",
+      "description": "會員密碼"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "email",
+    "password"
+  ]
+}
