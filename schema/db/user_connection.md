@@ -53,4 +53,4 @@
  CREATE TRIGGER user_connection_created_on
  BEFORE INSERT ON public."user_connection"
  FOR EACH ROW
- EXECUTE PROCEDURE set_user_created_on();
+ EXECUTE PROCEDURE set_created_on();

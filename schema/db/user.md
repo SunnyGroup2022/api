@@ -50,7 +50,7 @@
  END;
  $$ LANGUAGE plpgsql;
 
- CREATE TRIGGER usercreated_on
+ CREATE TRIGGER user_created_on
  BEFORE INSERT ON public."user"
  FOR EACH ROW
  EXECUTE PROCEDURE set_created_on();
