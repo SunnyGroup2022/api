@@ -14,7 +14,7 @@ module.exports = {
   APPKEYS: ['DSJFI($I>ZOA'],
   SESSCONF: {
     key: 'koa.sess',
-    maxAge: 30000,
+    maxAge: 300000,
     autoCommit: true, /** (boolean) automatically commit headers (default true) */
     overwrite: true, /** (boolean) can overwrite or not (default true) */
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
@@ -25,7 +25,7 @@ module.exports = {
     sameSite: null, /** (string) session cookie sameSite options (default null, don't set it) */
   },
   CORSCONF: {
-    origin: '*',
+    origin: 'https://app.sunnyh2022.com',
     credentials: true,
   },
   webUrl: 'https://app.sunnyh2022.com',
