@@ -1,0 +1,458 @@
+swagger: '2.0'
+info:
+  description: 'This is a sample test server for Aha'
+  version: '1.0.0'
+  title: 'Swagger SunnyTestApp'
+  contact:
+    email: 'sunny038423@gmail.com'
+host: 'api.sunnyh2022.com'
+basePath: '/v1'
+tags:
+- name: 'user'
+  description: 'Operations about user'
+schemes:
+- 'https'
+paths:
+  /user/login:
+    post:
+      tags:
+      - 'user'
+      summary: 'Logs user into the server（with Email and Password）'
+      operationId: 'userLogin'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'body'
+        in: 'body'
+        description: 'User object with email and password.'
+        required: true
+        type: 'object'
+        schema:
+          type: 'object'
+          properties:
+            email:
+              type: 'string'
+              description: 'User email'
+            password:
+              type: 'string'
+              description: 'User password'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/login-success'
+        '400':
+          description: '(1) Invalid username/password supplied<br>(2) Could not find the correct user<br>(3) User does not exists'
+          schema:
+            $ref: '#/definitions/status-message'
+        '403':
+          description: 'Input data is incorrect.'
+          schema:
+            $ref: '#/definitions/code-message'
+  /user/auth0login:
+    post:
+      tags:
+      - 'user'
+      summary: 'Logs user into the server（with Fb, Google）'
+      operationId: 'userAuth0Login'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'body'
+        in: 'body'
+        description: 'User object with access token from Auth0'
+        required: true
+        type: 'object'
+        schema:
+          type: 'object'
+          properties:
+            accessToken:
+              type: 'string'
+              description: 'Auth0 Access Token'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/login-success'
+        '400':
+          description: '(1) Auth0 login failed<br>(2) User does not exists<br>'
+          schema:
+            $ref: '#/definitions/status-message'
+        '403':
+          description: 'Input data is incorrect.'
+          schema:
+            $ref: '#/definitions/code-message'
+  /user/signUp:
+    post:
+      tags:
+      - 'user'
+      summary: 'User sign up（with Email and Password）'
+      operationId: 'userSignUp'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'body'
+        in: 'body'
+        description: 'Create user object'
+        required: true
+        type: 'object'
+        schema:
+          type: 'object'
+          properties:
+            email:
+              type: 'string'
+              description: 'User email'
+            password:
+              type: 'string'
+              description: 'User password'
+            password2:
+              type: 'string'
+              description: 'User password comfirmation'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/login-success'
+        '400':
+          description: '(1) This email already exists<br>(2) Password confirmation failed'
+          schema:
+            $ref: '#/definitions/status-message'
+        '403':
+          description: 'Input data is incorrect.'
+          schema:
+            $ref: '#/definitions/code-message'
+  /user/list:
+    get:
+      tags:
+      - 'user'
+      summary: 'Get all users'
+      operationId: 'userList'
+      produces:
+      - 'application/json'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/userList'
+        '400':
+          description: 'Get user list failed.'
+          schema:
+            $ref: '#/definitions/status-message'
+  /user/statistic:
+    get:
+      tags:
+      - 'user'
+      summary: 'Get user statistics'
+      operationId: 'userStatistic'
+      produces:
+      - 'application/json'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            type: 'object'
+            properties:
+              userCount:
+                type: 'integer'
+                format: 'int64'
+                description: 'Total number of users who have signed up.'
+              activeUserCount:
+                type: 'integer'
+                format: 'int64'
+                description: 'Total number of users with active sessions today.'
+              weekActiveUserAvg:
+                type: 'integer'
+                format: 'int64'                
+                description: 'Average number of active session users in the last 7 days rolling.'
+
+        '400':
+          description: 'Get user list failed.'
+          schema:
+            $ref: '#/definitions/status-message'
+  /user/sendmail:
+    post:
+      tags:
+      - 'user'
+      summary: 'Resend verification mail'
+      description: 'This can only be done by the logged-in user.'
+      operationId: 'userSendMail'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: "token"
+        in: "header"
+        description: "After logging in, you can get your token."
+        required: true
+        type: "string"
+      - name: 'body'
+        in: 'body'
+        description: 'Send mail object（Please select type=1）'
+        required: true
+        type: 'object'
+        schema:
+          type: 'object'
+          properties: 
+            type:
+              type: 'integer'
+              format: 'int64'
+              default: 1
+              description: '1. verify user email（must be 1）'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            type: 'object'
+            properties: 
+              status:
+                type: 'integer'
+                format: 'int64'
+                description: 'Status（0: failure, 1: success）'
+        '400':
+          description: '(1) Could not find the correct user<br>(2) User does not exists<br>(3) Email has already been verified'
+          schema:
+            $ref: '#/definitions/status-message'
+        '401':
+          description: 'Token invalid'
+          schema:
+            $ref: '#/definitions/token-failure'
+        '403':
+          description: 'Input data is incorrect.'
+          schema:
+            $ref: '#/definitions/code-message'
+  /user/verify:
+    get:
+      tags:
+      - 'user'
+      summary: 'Authenticate user by verifyCode'
+      operationId: 'userVerify'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'code'
+        in: 'query'
+        description: 'The code in the verification mail previously sent to the user.'
+        required: true
+        type: 'string'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            type: 'object'
+            properties: 
+              status:
+                type: 'integer'
+                format: 'int64'
+                description: 'Verification status（0: failure, 1: success）'
+        '400':
+          description: '(1) User does not exists'
+          schema:
+            $ref: '#/definitions/status-message'          
+  /user/{userId}:
+    get:
+      tags:
+      - 'user'
+      summary: 'Get user by user id'
+      description: 'This can only be done by the logged-in user, and users can only get their own profile.'
+      operationId: 'userFind'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: "token"
+        in: "header"
+        description: "After logging in, you can get your token."
+        required: true
+        type: "string"
+      - name: 'userId'
+        in: 'path'
+        description: 'After logging in, you can get your userId.'
+        required: true
+        type: 'string'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/userInfo'
+        '400':
+          description: '(1) Permission denied<br>(2) Could not find the correct user<br>(3) User does not exists'
+          schema:
+            $ref: '#/definitions/status-message'
+        '401':
+          description: 'Token invalid'
+          schema:
+            $ref: '#/definitions/token-failure'
+    put:
+      tags:
+      - 'user'
+      summary: 'Updated user'
+      description: 'This can only be done by the logged-in user, and users can only update their own profile.'
+      operationId: 'userUpdate'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: "token"
+        in: "header"
+        description: "After logging in, you can get your token."
+        required: true
+        type: "string"
+      - name: 'userId'
+        in: 'path'
+        description: 'After logging in, you can get your userId.'
+        required: true
+        type: 'string'
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          type: 'object'
+          properties:
+            name:
+              type: 'string'
+              description: 'User name'
+            oldPassword:
+              type: 'string'
+              description: 'User old password'
+            password:
+              type: 'string'
+              description: 'User password'
+            password2:
+              type: 'string'
+              description: 'User password comfirmation'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            type: 'object'
+            properties: 
+              status:
+                type: 'integer'
+                format: 'int64'
+                description: 'Status（0: failure 1: success）'
+        '400':
+          description: '(1) Could not find the correct user<br>(2) User does not exists<br>(3) Old password cannot be empty<br>(4) User use FB or GOOGLE to log in, no password is required<br>(5) Password comfirmation failed<br>(6) Old password incorrect'
+          schema:
+            $ref: '#/definitions/status-message'
+        '401':
+          description: 'Token invalid'
+          schema:
+            $ref: '#/definitions/token-failure'
+        '403':
+          description: 'Input data is incorrect.'
+          schema:
+            $ref: '#/definitions/code-message'
+definitions:
+  userInfo:
+    type: 'object'
+    description: 'User profile'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: 'User ID'
+      name:
+        type: 'string'
+        description: 'User name'
+      email:
+        type: 'string'
+        description: 'User email'
+      email_verified:
+        type: 'integer'
+        format: 'int64'
+        description: 'Email verification status（0: Unverified, 1: Verified）'
+      created_on:
+        type: 'string'
+        description: 'User registration time'
+      last_login:
+        type: 'string'
+        description: 'User last login time'
+      last_online:
+        type: 'string'
+        description: 'User last online time'
+      logins:
+        type: 'integer'
+        format: 'int64'
+        description: 'The number of times the user logged in'
+  userList:
+    type: 'object'
+    properties:
+      total:
+        type: 'integer'
+        format: 'int64'
+        description: 'Total number'
+      data:
+        type: 'array'
+        description: 'User list'
+        items: 
+          type: 'object'
+          description: 'User profile'
+          properties: 
+            id:
+              type: 'integer'
+              format: 'int64'  
+              description: 'User ID'
+            name:
+              type: 'string'
+              description: 'User name'
+            created_on:
+              type: 'string'
+              description: 'User registration time'
+            last_online:
+              type: 'string'
+              description: 'User last online time'
+            logins:
+              type: 'integer'
+              format: 'int64'
+              description: 'The number of times the user logged in'
+  login-success:
+    type: 'object'
+    properties:
+      status:
+        type: 'integer'
+        format: 'int64'
+        description: 'Login status（1: success）'
+      token:
+        type: 'string'
+        description: 'JWT token after authentication'
+      expireTime:
+        type: 'string'
+        description: 'Token expire time'
+      userId:
+        type: 'integer'
+        format: 'int64'
+        description: 'User ID'
+      name:
+        type: 'string'
+        description: 'User name'
+  status-message:
+    type: 'object'
+    properties:
+      status:
+        type: 'integer'
+        format: 'int64'
+        description: '0: failure, 1: success'
+      message:
+        type: 'string'
+        description: 'message'
+  code-message:
+    type: 'object'
+    properties:
+      code:
+        type: 'string'
+        description: 'Error code'
+        default: 'Input data is incorrect'
+      message:
+        type: 'string'
+        description: 'Error message'
+  token-failure:
+    type: 'object'
+    properties:
+      code:
+        type: 'string'
+        description: 'Error code'
+        default: 'Token invalid'
+      message:
+        type: 'string'
+        description: 'Error message'
+externalDocs:
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'

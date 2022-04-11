@@ -5,34 +5,34 @@
   "properties": {
     "total": {
       "type": "integer",
-      "description": "搜尋結果的總數"
+      "description": "Total number"
     },
     "data": {
     	"type": "array",
-    	"description": "會員資料列表",
+    	"description": "User list",
     	"items": {
     		"type": "object",
-    		"description": "會員資料",
+    		"description": "User profile",
     		"properties": {
           "id": {
             "type": "integer",
-            "description": "會員編號"
+            "description": "User ID"
           },
           "name": {
             "type": "string",
-            "description": "會員姓名"
+            "description": "User name"
           },
           "created_on": {
             "type": "object",
-            "description": "會員註冊時間"
+            "description": "User registration time"
           },
           "logins": {
             "type": "integer",
-            "description": "會員登入次數"
+            "description": "The number of times the user logged in"
           },
           "last_online": {
             "type": ["object", "null"],
-            "description": "會員最後活動時間"
+            "description": "User last online time"
           }
         },
         "additionalProperties": false

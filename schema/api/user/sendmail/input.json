@@ -5,7 +5,7 @@
   "properties": {
     "type": {
       "type": "integer",
-      "description": "類型（1: 驗證會員電子信箱）"
+      "description": "1. verify user email"
     }
   },
   "additionalProperties": false,

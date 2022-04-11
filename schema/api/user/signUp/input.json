@@ -5,17 +5,17 @@
   "properties": {
     "email": {
       "type": "string",
-      "description": "會員輸入帳號",
+      "description": "User email",
       "pattern": "^(?=.*[@]).{3,200}$"
     },
     "password": {
       "type": "string",
-      "description": "會員輸入密碼",
+      "description": "User password",
       "pattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20}$"
     },
     "password2": {
       "type": "string",
-      "description": "會員輸入密碼確認",
+      "description": "User password comfirmation",
       "pattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20}$"
     }
   },

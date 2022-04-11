@@ -5,11 +5,12 @@
   "properties": {
     "email": {
       "type": "string",
-      "description": "會員電子郵件"
+      "description": "User email",
+      "pattern": "^(?=.*[@]).{3,200}$"
     },
     "password": {
       "type": "string",
-      "description": "會員密碼"
+      "description": "User password"
     }
   },
   "additionalProperties": false,

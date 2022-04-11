@@ -5,15 +5,15 @@
   "properties": {
     "userCount": {
       "type": "integer",
-      "description": "註冊會員總數"
+      "description": "Total number of users who have signed up."
     },
     "activeUserCount": {
       "type": "integer",
-      "description": "本日活躍會員總數"
+      "description": "Total number of users with active sessions today."
     },
     "weekActiveUserAvg": {
       "type": "integer",
-      "description": "過去七天活躍會員平均數"
+      "description": "Average number of active session users in the last 7 days rolling."
     }
   },
   "additionalProperties": false

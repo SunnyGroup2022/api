@@ -5,7 +5,7 @@
   "properties": {
     "status": {
       "type": "integer",
-      "description": "修改狀態（1: 登入成功）"
+      "description": "Status（0: failure 1: success）"
     }
   },
   "additionalProperties": false

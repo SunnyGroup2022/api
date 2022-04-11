@@ -37,7 +37,7 @@ async function login(token, body, query, params, ctx) {
     const compareResult = await bcrypt.compare(body.password, user.password);
 
     if (!compareResult) {
-      throw new Error('Login mismatch');
+      throw new Error('Invalid username/password supplied');
     }
 
     // User Login Process
@@ -398,7 +398,7 @@ async function sendmail(token, body, query, params, ctx) {
 
     // If this email address has already been verified. return an error.
     if (user.email_verified) {
-      throw new Error('email has already been verified');
+      throw new Error('Email has already been verified');
     }
 
     // Generate VerifyCode
@@ -479,6 +479,11 @@ async function verify(token, body, query, params, ctx) {
  */
 async function update(token, body, query, params, ctx) {
   try {
+    // Token is required. Users have to log in to update their own profile
+    if (params.id != ctx.token.id) {
+      throw new Error('Permission denied');
+    }
+
     // Get user
     let user = await db('user').where({id: ctx.token.id});
 
@@ -500,9 +505,13 @@ async function update(token, body, query, params, ctx) {
     }
 
     /* Update user's password */
-    if (body.password) {
+    if (body.password || body.oldPassword) {
       if (!body.oldPassword) {
         throw new Error('Old password cannot be empty');
+      }
+
+      if (!body.password) {
+        throw new Error('Password cannot be empty');
       }
 
       if (!user.password) {

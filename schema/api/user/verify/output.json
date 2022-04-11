@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "description": "POST user/signUp User.signUp output data",
+  "description": "GET user/verify User.verify output data",
   "properties": {
     "status": {
       "type": "integer",
-      "description": "驗證狀態（0: 驗證未成功, 1: 驗證成功）"
+      "description": "Verification status（0: failure, 1: success）"
     }
   },
   "additionalProperties": false

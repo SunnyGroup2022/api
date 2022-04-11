@@ -5,7 +5,7 @@
   "properties": {
     "status": {
       "type": "integer",
-      "description": "發送狀態（0: 發送未成功, 1: 發送成功）"
+      "description": "Status（0: failure, 1: success）"
     }
   },
   "additionalProperties": false

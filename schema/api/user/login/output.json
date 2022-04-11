@@ -5,23 +5,23 @@
   "properties": {
     "status": {
       "type": "integer",
-      "description": "登入狀態（1: 登入成功）"
+      "description": "Login status（1: success）"
     },
     "token": {
       "type": "string",
-      "description": "登入成功後核發的Token"
+      "description": "JWT token after authentication"
     },
     "expireTime": {
       "type": "object",
-      "description": "Token 的有效時間"
+      "description": "Token expire time"
     },
     "userId": {
       "type": "integer",
-      "description": "會員編號"
+      "description": "User ID"
     },
     "name": {
       "type": ["string", "null"],
-      "description": "會員姓名"
+      "description": "User name"
     }
   },
   "additionalProperties": false

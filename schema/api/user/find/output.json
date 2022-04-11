@@ -5,35 +5,35 @@
   "properties": {
     "id": {
       "type": "integer",
-      "description": "會員編號"
+      "description": "User ID"
     },
     "name": {
       "type": "string",
-      "description": "會員姓名"
+      "description": "User name"
     },
     "email": {
       "type": "string",
-      "description": "會員電子郵件"
+      "description": "User email"
     },
     "email_verified": {
       "type": "integer",
-      "description": "會員電子郵件驗證狀態（0: 未驗證, 1: 已驗證）"
+      "description": "Email verification status（0: Unverified, 1: Verified）"
     },
     "created_on": {
       "type": "object",
-      "description": "會員註冊時間"
+      "description": "User registration time"
     },
     "last_login": {
       "type": "object",
-      "description": "會員最後登入時間"
+      "description": "User last login time"
     },
     "last_online": {
       "type": "object",
-      "description": "會員最後活動時間"
+      "description": "User last online time"
     },
     "logins": {
       "type": "integer",
-      "description": "會員登入次數"
+      "description": "The number of times the user logged in"
     }
   },
   "additionalProperties": false

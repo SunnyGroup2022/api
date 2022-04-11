@@ -5,20 +5,20 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "會員姓名"
+      "description": "User name"
     },
     "oldPassword": {
       "type": "string",
-      "description": "會員舊密碼"
+      "description": "User old password"
     },
     "password": {
       "type": "string",
-      "description": "會員新設定的密碼",
+      "description": "User password",
       "pattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20}$"
     },
     "password2": {
       "type": "string",
-      "description": "會員新密碼確認",
+      "description": "User password comfirmation",
       "pattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).{8,20}$"
     }
   },
