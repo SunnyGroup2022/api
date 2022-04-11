@@ -142,7 +142,7 @@ paths:
     get:
       tags:
       - 'user'
-      summary: 'Get user statistics'
+      summary: 'Get user statistic'
       operationId: 'userStatistic'
       produces:
       - 'application/json'

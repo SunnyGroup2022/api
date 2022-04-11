@@ -4,7 +4,7 @@ module.exports = {
     auth0login: {method: 'post', path: '/auth0login'},
     signUp: {method: 'post', path: '/signUp'},
     sendmail: {method: 'post', path: '/sendmail', auth: true},
-    statistic: {method: 'get', path: '/statistics'},
+    statistic: {method: 'get', path: '/statistic'},
     verify: {method: 'get', path: '/verify'},
     list: {method: 'get', path: '/list'},
     find: {method: 'get', path: '/:id', auth: true},
