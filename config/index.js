@@ -10,11 +10,11 @@ module.exports = {
   db: knex(env[ENV].dbConfig),
   bcryptSalt: 10,
   jwtSecret: 'Ohu4!YSd9n+2',
-  jwtExpireTime: 60*60*1000,
+  jwtExpireTime: 12*60*60*1000,
   APPKEYS: ['DSJFI($I>ZOA'],
   SESSCONF: {
     key: 'koa.sess',
-    maxAge: 300000,
+    maxAge: 30*60*1000,
     autoCommit: true, /** (boolean) automatically commit headers (default true) */
     overwrite: true, /** (boolean) can overwrite or not (default true) */
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
