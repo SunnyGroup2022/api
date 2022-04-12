@@ -10,7 +10,8 @@ module.exports = {
   db: knex(env[ENV].dbConfig),
   bcryptSalt: 10,
   jwtSecret: 'Ohu4!YSd9n+2',
-  jwtExpireTime: 12*60*60*1000,
+  jwtExpireTime: 24*60*60*1000,
+  SENDGRID_API_KEY: '', // secret key, will include at the server environment.
   APPKEYS: ['DSJFI($I>ZOA'],
   SESSCONF: {
     key: 'koa.sess',
